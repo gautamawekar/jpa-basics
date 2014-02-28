@@ -27,7 +27,9 @@ public class SimpleJpaUsageTest {
     
     @AfterClass
     public static void close() {
-        factory.close();
+        if (factory != null) {
+            factory.close();
+        }
     }
     
     /**
@@ -99,7 +101,7 @@ public class SimpleJpaUsageTest {
     @Test(expected = RuntimeException.class)
     public void rollback() {
         EntityManager entityManager = factory.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();;
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
             String personName = "happyPath";
             Person person = new Person();

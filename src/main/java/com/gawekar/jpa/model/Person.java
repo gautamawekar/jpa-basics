@@ -3,11 +3,13 @@ package com.gawekar.jpa.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.TableGenerator;
 
 @Entity
 public class Person {
     @Id
-    @GeneratedValue
+    @TableGenerator(name="Person_Id_Gen")
+    @GeneratedValue(generator="Person_Id_Gen")
     private Integer id;
     private String firstName;
     private long salary;
